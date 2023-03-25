@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoute.js"; //name authRoutes given by us
+import categoryRoutes from "./routes/categoryRoutes.js"; //name categoryRoutes given by us
 import cors from "cors";
 
 //const colors = require('colors')
@@ -25,6 +26,7 @@ app.use(morgan("dev"));
 
 //routes
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/category", categoryRoutes);
 
 //rest api
 app.get("/", (req, res) => {
