@@ -15,10 +15,11 @@ const Contact = () => {
         <div className="col-md-4">
           <h1 className="bg-dark p-2 text-white text-center">CONTACT US</h1>
           <p className="text-justify mt-2">
-          We value your feedback and welcome any questions or concerns you may have. Please don't hesitate to reach out to us at any time.
+            We value your feedback and welcome any questions or concerns you may
+            have. Please don't hesitate to reach out to us at any time.
           </p>
           <p className="mt-3">
-            <BiMailSend /> : www.help@thevkartapp.com
+            <BiMailSend /> : www.help@shelpr.com
           </p>
           <p className="mt-3">
             <BiPhoneCall /> : 012-3456789

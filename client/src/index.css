@@ -6,12 +6,10 @@
   box-sizing: border-box;
 }
 
-/*font-family: 'Playfair Display', serif; navbar
-
-font-family: 'Poppins', sans-serif;  headings*/
+/* font-family: 'Poppins', sans-serif; */
+/* font-family: 'Playfair Display', serif; */
 
 /* //navbar css */
-
 .navbar {
   font-family: "Poppins", sans-serif;
   font-size: 17px;
@@ -19,7 +17,7 @@ font-family: 'Poppins', sans-serif;  headings*/
   text-transform: uppercase;
   box-shadow: 0 8px 6px -6px gray;
   --webkit-box-shadow: 0 8px 6px -6px gray;
-  border-bottom: solid gray !important; /*to overwrite imp is used*/
+  border-bottom: solid gray !important;
 }
 
 .nav-link {
@@ -27,14 +25,28 @@ font-family: 'Poppins', sans-serif;  headings*/
 }
 
 .active {
-  border-bottom: 2px solid rgb(68, 156, 10);
+  border-bottom: 2px solid black;
 }
 
 .navbar-brand {
   font-weight: 700;
   font-family: "roboto", sans-serif;
   letter-spacing: 3px;
-  color: rgb(74, 160, 16);
+  color: green !important;
+}
+
+.search-form {
+  margin-right: 10px;
+  margin-top: 4px;
+}
+.search-form input {
+  border: none;
+  border-radius: 0;
+}
+.search-form button {
+  background-color: green !important;
+  border-radius: 0;
+  color: white;
 }
 
 /* =============================
@@ -59,10 +71,9 @@ font-family: 'Poppins', sans-serif;  headings*/
 }
 
 .footer a:hover {
-  color: rgb(74, 160, 16);
+  color: #ffefba;
   border-bottom: 1px solid #ffefba;
 }
-
 /* =================================
 ======== page not found css ======= */
 .pnf {
@@ -93,7 +104,6 @@ font-family: 'Poppins', sans-serif;  headings*/
   background-color: black;
   color: white;
 }
-
 /* ========================================= */
 /* =========contact us ========= */
 .contactus {
@@ -105,8 +115,31 @@ font-family: 'Poppins', sans-serif;  headings*/
   justify-content: center;
 }
 
-/* ========================================= */
+/* ==================== */
 .product-link {
   text-decoration: none !important;
   color: black !important;
+}
+
+.cat-btn {
+  padding: 40px 0px;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+.cat-btn:hover {
+  background-color: #434343;
+  color: white;
+}
+/* ================
+====dashboard
+=================== */
+
+.dashboard {
+  margin-top: 100px !important;
+}
+
+.dashboard-menu h4 {
+  background-color: #434343 !important;
+  color: white;
+  padding: 20px 0px;
 }

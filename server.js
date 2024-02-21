@@ -8,7 +8,7 @@ import authRoutes from "./routes/authRoute.js"; //name authRoutes given by us
 import categoryRoutes from "./routes/categoryRoutes.js"; //name categoryRoutes given by us
 import productRoutes from "./routes/productRoutes.js";
 import cors from "cors";
-
+import path from "path";
 //const colors = require('colors')
 
 //Config dotenv
@@ -24,17 +24,17 @@ const app = express();
 app.use(cors()); //to avoid cross origin error
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(express.static(path.join(__dirname, "./client/build")));
 
 //routes
 app.use("/api/v1/auth", authRoutes);
+
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product", productRoutes);
 
 //rest api
-app.get("/", (req, res) => {
-  res.send({
-    message: "Welcome to our ecommerce website!",
-  });
+app.use("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 // PORT
 const PORT = process.env.PORT || 8080; // react's port 3000,node generally 8080/8000 ,angular 4200

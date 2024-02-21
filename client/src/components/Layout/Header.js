@@ -2,9 +2,15 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
+import SearchInput from "../Form/SearchInput";
+import useCategory from "../../hooks/useCategory";
+import { useCart } from "../../context/cart";
+import { Badge } from "antd";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const [cart] = useCart();
+  const categories = useCategory();
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -12,11 +18,11 @@ const Header = () => {
       token: "",
     });
     localStorage.removeItem("auth");
-    toast.success("Logout successfully");
+    toast.success("Logout Successfully");
   };
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -30,19 +36,44 @@ const Header = () => {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <Link className="navbar-brand">🛒 Cart</Link>
+            <Link to="/" className="navbar-brand">
+              🛒 Shelpr
+            </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+              <SearchInput />
               <li className="nav-item">
                 <NavLink to="/" className="nav-link ">
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/category" className="nav-link">
+              <li className="nav-item dropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  to={"/categories"}
+                  data-bs-toggle="dropdown"
+                >
                   Categories
-                </NavLink>
+                </Link>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link className="dropdown-item" to={"/categories"}>
+                      All Categories
+                    </Link>
+                  </li>
+                  {categories?.map((c) => (
+                    <li>
+                      <Link
+                        className="dropdown-item"
+                        to={`/category/${c.slug}`}
+                      >
+                        {c.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </li>
-              {!auth.user ? (
+
+              {!auth?.user ? (
                 <>
                   <li className="nav-item">
                     <NavLink to="/register" className="nav-link">
@@ -50,7 +81,7 @@ const Header = () => {
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink to="/login" className="nav-link ">
+                    <NavLink to="/login" className="nav-link">
                       Login
                     </NavLink>
                   </li>
@@ -60,9 +91,10 @@ const Header = () => {
                   <li className="nav-item dropdown">
                     <NavLink
                       className="nav-link dropdown-toggle"
+                      href="#"
                       role="button"
                       data-bs-toggle="dropdown"
-                      aria-expanded="false"
+                      style={{ border: "none" }}
                     >
                       {auth?.user?.name}
                     </NavLink>
@@ -91,8 +123,10 @@ const Header = () => {
                 </>
               )}
               <li className="nav-item">
-                <NavLink to="/cart" className="nav-link ">
-                  Cart (0)
+                <NavLink to="/cart" className="nav-link">
+                  <Badge count={cart?.length} showZero offset={[10, -5]}>
+                    Cart
+                  </Badge>
                 </NavLink>
               </li>
             </ul>
